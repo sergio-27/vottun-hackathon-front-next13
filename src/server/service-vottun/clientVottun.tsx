@@ -1,8 +1,8 @@
 
 
-const baseVottunUrl = "https://api.vottun.tech/cwll/v1";
+const baseVottunUrl = "https://api.vottun.tech";
 
-export const getVottunClient = async ({
+export const requestToVottunApi = async ({
     method,
     endpoint,
     body
@@ -19,11 +19,11 @@ export const getVottunClient = async ({
                 "Content-Type": "application/json",
                 "x-application-vkn": "X68MjpFedp4w9uul5N-wPhgZ_2ApPTgQ3SmtnwPYr0HNZwe1KpD0t7xIXqmQGF0i"
             },
+            method: method,
             body: body
         }
     );
-    console.log("url", baseVottunUrl + endpoint);
-
+    console.log("url requested", baseVottunUrl + endpoint);
     const jsonResponse = (await response).json();
 
     return jsonResponse;

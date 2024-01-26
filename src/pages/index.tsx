@@ -8,6 +8,16 @@ import { NavigationMenuDemo } from "@/components/NavBar";
 
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const { mutate: trasnferERC20 } = api.post.create.useMutation({});
+
+
+  function onClickButton() {
+  
+    trasnferERC20({
+      name: "pepito"
+    });
+    console.log("holaaaa")
+  }
 
   return (
     <>
@@ -24,7 +34,7 @@ export default function Home() {
             Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
           </h1>
       
-          <Button >Hola Ramon</Button>
+          <Button onClick={() => onClickButton()}>Hola Ramon</Button>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
@@ -56,4 +66,9 @@ export default function Home() {
       </main>
     </>
   );
+
+
+  
 }
+
+

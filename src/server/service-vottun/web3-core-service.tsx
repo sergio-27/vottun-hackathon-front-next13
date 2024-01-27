@@ -27,5 +27,6 @@ export async function getAvailableNetworks() {
         endpoint: "/core/v1/evm/info/chains", 
         body: null
     });
+    console.log(response);
     return response;
 }

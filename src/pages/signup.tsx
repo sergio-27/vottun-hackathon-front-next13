@@ -1,4 +1,9 @@
+import { getAvailableNetworks } from '@/server/service-vottun/web3-core-service';
+import { api } from '@/utils/api';
+import { url } from 'inspector';
+import { redirect } from 'next/dist/server/api-utils';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 const Signup: React.FC = () => {
@@ -7,6 +12,10 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const router = useRouter();
+
+  const {mutate: createUser} = api.user.createUser.useMutation({});
+ 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,12 +57,12 @@ const Signup: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <label className="block mb-2 text-sm font-bold text-white" htmlFor="password">
               Password:
             </label>
             <input
-              className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               type="password"
               id="password"
               value={password}
@@ -74,6 +83,7 @@ const Signup: React.FC = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
+              onClick={() => onClickRegister()}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               type="submit"
             >
@@ -89,6 +99,21 @@ const Signup: React.FC = () => {
       </div>
     </div>
   );
+
+  async function onClickRegister() {
+
+    const response = createUser({
+      username: username,
+      email: email
+    });
+
+    const userExists = api.user.getUser.useQuery({email: email});
+
+    console.log("holaaaa", response);
+    console.log("userExists", userExists);
+  
+    //router.push('https://www.google.com');
+  }
 };
 
 export default Signup;

@@ -1,6 +1,6 @@
 import { type FC, type ReactNode } from "react";
 
-import Navbar from "./Navbar";
+import Navbar from "./NavBar";
 import Footer from "./Footer";
 
 interface Props {

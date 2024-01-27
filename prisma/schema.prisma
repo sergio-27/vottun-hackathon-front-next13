@@ -21,7 +21,8 @@ model Post {
 
 model User {
     id                         Int      @id @default(autoincrement())
-    name                       String
+    username                   String   @unique
+    email                      String
     dni                        String
     walletAddress              String
     communities                Community[]

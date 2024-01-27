@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
+    provider = "sqlite"
     url      = env("DATABASE_URL")
 }
 
@@ -17,4 +17,55 @@ model Post {
     updatedAt DateTime @updatedAt
 
     @@index([name])
+}
+
+model User {
+    id                         Int      @id @default(autoincrement())
+    name                       String
+    dni                        String
+    walletAddress              String
+    communities                Community[]
+    participantCommunities     CommunityParticipants[]
+}
+
+model Community {
+    id                         Int      @id @default(autoincrement())
+    ownerId                    Int
+    hasProposal                Boolean
+    hasSharedPayment           Boolean
+    hasChat                    Boolean
+    owner                      User @relation(fields: [ownerId], references: [id])
+    participantCommunities     CommunityParticipants[]
+}
+
+model CommunityParticipants {
+    community          Community @relation(fields: [commId], references: [id])
+    commId             Int
+    participant        User @relation(fields: [participantId], references: [id])
+    participantId      Int @unique
+
+    @@id([commId, participantId])
+}
+
+//votacion
+model Proposals {
+    id                         Int      @id @default(autoincrement())
+    communityId                String
+    title                      String
+    description                String
+    creationDate               Int
+    status                     String
+    finishedDate               Int
+    winnerOption               Int
+    requiredVotesToClose       Int
+    currentVotes               Int
+    options                    Options[]
+}
+
+model Options {
+    id              Int @id @default(autoincrement())
+    optionText      String
+    numVotes        Int
+    propId          Int
+    proposal        Proposals @relation(fields: [propId], references: [id])
 }

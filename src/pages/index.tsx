@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Communities from "@/components/Communities";
 import Layout from "@/components/layout";
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
 
       <Layout>
         <Hero />
+        <Communities />
       </Layout>
     </>
   );

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Link from "next/link";
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -12,16 +12,24 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-800">
+    <div className="flex h-screen items-center justify-center bg-gray-800">
       <div className="w-full max-w-md">
-        <h1 className="mb-8 text-3xl text-center text-white">Inicio de Sesión</h1>
-        <form onSubmit={handleSubmit} className="px-8 pt-6 pb-8 mb-4 bg-gray-700 rounded">
+        <h1 className="mb-8 text-center text-3xl text-white">
+          Inicio de Sesión
+        </h1>
+        <form
+          onSubmit={handleSubmit}
+          className="mb-4 rounded bg-gray-700 px-8 pb-8 pt-6"
+        >
           <div className="mb-4">
-            <label className="block mb-2 text-sm font-bold text-white" htmlFor="username">
+            <label
+              className="mb-2 block text-sm font-bold text-white"
+              htmlFor="username"
+            >
               Username:
             </label>
             <input
-              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
               type="text"
               id="username"
               value={username}
@@ -29,11 +37,14 @@ const Login: React.FC = () => {
             />
           </div>
           <div className="mb-6">
-            <label className="block mb-2 text-sm font-bold text-white" htmlFor="password">
+            <label
+              className="mb-2 block text-sm font-bold text-white"
+              htmlFor="password"
+            >
               Password:
             </label>
             <input
-              className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
               type="password"
               id="password"
               value={password}
@@ -41,14 +52,16 @@ const Login: React.FC = () => {
             />
           </div>
           <div className="flex items-center justify-between">
-            <button
-              className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Iniciar Sesión
-            </button>
+            <Link href="/communities" passHref>
+              <button
+                className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+                type="submit"
+              >
+                Iniciar Sesión
+              </button>
+            </Link>
             <Link href="/" passHref>
-              <button className="px-4 py-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+              <button className="focus:shadow-outline rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600 focus:outline-none">
                 Volver al Home
               </button>
             </Link>

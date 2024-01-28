@@ -1,5 +1,5 @@
 import React from "react";
-import SolutionCard from "@/components/SolutionCard"; 
+import SolutionCard from "@/components/SolutionCard";
 import Layout from "@/components/Layout";
 import Link from "next/link";
 
@@ -16,10 +16,9 @@ const solutions = () => {
           <div className="">
             <div className="container mx-auto mt-16">
               <div className="mt-10">
-                <SolutionCard
-                  title="Chat"
-                 
-                />
+                <Link href="/chat">
+                  <SolutionCard title="Chat" />
+                </Link>
                 <SolutionCard
                   title="Voting"
                  
@@ -33,10 +32,10 @@ const solutions = () => {
                 />
               </div>
               <Link href="/communities" passHref>
-              <button className="focus:shadow-outline rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600 focus:outline-none -my-2 mx-10">
-                Back
-              </button>
-            </Link>
+                <button className="focus:shadow-outline -my-2 mx-10 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600 focus:outline-none">
+                  Back
+                </button>
+              </Link>
             </div>
           </div>
         </section>

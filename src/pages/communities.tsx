@@ -1,8 +1,13 @@
 import CommunityCard from "@/components/CommunityCard";
 import Layout from "@/components/Layout";
+import { api } from "@/utils/api";
 import Link from "next/link";
 
 const communities = () => {
+
+  const {data: userCommunities} = api.community.getUserCommunities.useQuery({email: ""});
+  console.log("userCommunities", userCommunities);
+
   return (
     <Layout>
       <div className="min-h-screen text-white bg-slate-950">

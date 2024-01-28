@@ -37,9 +37,17 @@ export const communityRouter = createTRPCRouter({
         
         return createCommunity;
       }),
+      getUserCommunities: publicProcedure
+      .input(z.object({ email: z.string() }))
+      .query(async ({ ctx, input }) => {
+        return await ctx.db.community.findMany({
+          where: {
+            ownerId: 1
+          }
+        });
+      }),
       deploySmartContract: publicProcedure
       .input(z.object({ 
-        ownerId: z.number(),
         communityName: z.string(),
         hasProposal: z.boolean(),
         hasSharedPayment: z.boolean(),
@@ -48,6 +56,8 @@ export const communityRouter = createTRPCRouter({
       }))
       .query(async ({ ctx, input }) => {
         console.log("hola", input.adminAddress);
+
+
         return await deploySmartContract({
             contractSpecsId: 12084,
             sender: "0x84fa37c1b4d9dbc87707e47440eae5285edd8e58",

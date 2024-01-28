@@ -5,7 +5,7 @@ import React, { useState, ChangeEvent } from "react";
 interface CheckboxState {
   proposals: boolean;
   commonPayments: boolean;
-  customDesign: boolean;
+  chat: boolean;
 }
 
 const createCommunity: React.FC = () => {
@@ -15,19 +15,17 @@ const createCommunity: React.FC = () => {
   const [checkboxState, setCheckboxState] = useState<CheckboxState>({
     proposals: false,
     commonPayments: false,
-    customDesign: false,
+    chat: false,
   });
-  const {data, refetch} = api.community.deploySmartContract.useQuery({
-        ownerId: 1,
-        communityName: communityName,
-        hasProposal: true,
-        hasSharedPayment: true,
-        hasChat: true,
-        adminAddress: "0x8d081aB34302C1406eD86e49a0beD17802223039", //address deivid
+  const {data: deploSmartContractData, refetch} = api.community.deploySmartContract.useQuery({
+    adminAddress: "0xB669c0D9eFAe5A923a7d863Eb0A623D35280d7F4",
+    communityName: communityName,
+    hasChat: checkboxState.chat,
+    hasProposal: checkboxState.proposals,
+    hasSharedPayment: checkboxState.proposals
   }, {enabled: false});
 
-  const {mutate: createdCommunityLocal} = api.community.createCommunity.useMutation({});
-
+  const {mutate: createdCommunityLocal} = api.community.createCommunity.useMutation();
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCheckboxState({
@@ -53,26 +51,16 @@ const createCommunity: React.FC = () => {
     const response = await refetch();
     console.log("createCommunityHandler", response.data);
 
-
     createdCommunityLocal({
       ownerId: 1,
       communityName: communityName,
       communityDescription: communityDescription,
       communityImageUrl: communityImageUrl,
-      contractAddress: "0x000",
-      hasProposal: true,
-      hasSharedPayment: true,
-      hasChat: true,
-      adminAddress: "0x8d081aB34302C1406eD86e49a0beD17802223039",
-    });
-
-    
-
-    console.log({
-      checkboxState,
-      communityName,
-      communityDescription,
-      communityImageUrl,
+      contractAddress: response.data.contractAddress,
+      hasProposal: checkboxState.proposals,
+      hasSharedPayment: checkboxState.commonPayments,
+      hasChat: checkboxState.chat,
+      adminAddress: "0xB669c0D9eFAe5A923a7d863Eb0A623D35280d7F4",
     });
   };
 
@@ -134,7 +122,7 @@ const createCommunity: React.FC = () => {
             <input
               type="checkbox"
               name="customDesign"
-              checked={checkboxState.customDesign}
+              checked={checkboxState.chat}
               onChange={handleCheckboxChange}
               className="mr-2"
             />
@@ -159,3 +147,7 @@ const createCommunity: React.FC = () => {
 };
 
 export default createCommunity;
+function useAuth(): { user: any; login: any; logout: any; } {
+  throw new Error("Function not implemented.");
+}
+

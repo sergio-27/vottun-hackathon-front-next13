@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center justify-between">
           <div className="mb-6 w-full md:mb-0 md:w-auto">
-            <a href="#" className="text-xl font-bold">
+            <a className="text-xl font-bold">
               Disruptive Management
             </a>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import SolutionCard from "@/components/SolutionCard"; 
 import Layout from "@/components/Layout";
+import Link from "next/link";
 
 const solutions = () => {
   return (
@@ -33,9 +34,13 @@ const solutions = () => {
                 <SolutionCard
                   backgroundImage="solution-4.png"
                   title="Pagos compartidos"
-                
                 />
               </div>
+              <Link href="/communities" passHref>
+              <button className="focus:shadow-outline rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600 focus:outline-none -my-2 mx-10">
+                Go back
+              </button>
+            </Link>
             </div>
           </div>
         </section>

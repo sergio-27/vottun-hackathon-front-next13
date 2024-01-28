@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState, ChangeEvent } from "react";
 
 interface CheckboxState {
@@ -48,7 +49,7 @@ const createCommunity: React.FC = () => {
   return (
     <div className="container mx-auto flex min-h-screen flex-col items-center justify-start bg-slate-950 p-4">
       <div className="container mx-auto min-h-screen bg-slate-950 p-4">
-        <h2 className="my-5 text-3xl font-extrabold text-blue-500 sm:text-4xl md:text-5xl">
+        <h2 className="my-5 text-3xl font-extrabold text-gray-200 sm:text-4xl md:text-5xl">
           Create Your Community
         </h2>
         <input
@@ -75,7 +76,7 @@ const createCommunity: React.FC = () => {
           placeholder="Community Image URL"
           className="mb-4 w-full  rounded-md border-2 p-4 text-black"
         />
-        <h2 className="my-5 text-3xl font-extrabold text-blue-500 sm:text-4xl md:text-5xl">
+        <h2 className="my-5 text-3xl font-extrabold text-gray-200 sm:text-4xl md:text-5xl">
           Which solutions do you want to use?
         </h2>
         <div className="my-10 flex w-full flex-col items-center justify-center text-white">
@@ -97,7 +98,7 @@ const createCommunity: React.FC = () => {
               onChange={handleCheckboxChange}
               className="mr-2"
             />
-            Votaciones
+            Voting
           </label>
           <label className="mb-4 block w-72 rounded-md border-2 p-4">
             <input
@@ -107,16 +108,21 @@ const createCommunity: React.FC = () => {
               onChange={handleCheckboxChange}
               className="mr-2"
             />
-            Propuestas
+            Proposals
           </label>
         </div>
         <button
-          className="focus:shadow-outline mb-4 mt-10 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+          className="focus:shadow-outline mb-4 -mt-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
           type="button"
           onClick={createCommunityHandler}
         >
           CREATE
         </button>
+        <Link href="/communities" passHref>
+          <button className="focus:shadow-outline rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600 focus:outline-none mx-10">
+            Go back
+          </button>
+        </Link>
       </div>
     </div>
   );

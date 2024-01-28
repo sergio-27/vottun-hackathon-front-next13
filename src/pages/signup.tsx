@@ -3,6 +3,7 @@ import { api } from '@/utils/api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { boolean } from 'zod';
 
 const Signup: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -10,6 +11,7 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const {mutate: createdUser} = api.user.createUser.useMutation({});
@@ -29,7 +31,7 @@ const Signup: React.FC = () => {
   };
   
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-800">
+    <div className="flex items-center justify-center h-screen bg-gray-900">
       <div className="w-full max-w-md">
         <h1 className="mb-8 text-3xl text-center text-white">Registro</h1>
         {error && <p className="p-3 text-red-600 bg-red-200 rounded">{error}</p>}
@@ -83,11 +85,16 @@ const Signup: React.FC = () => {
             />
           </div>
           <div className="flex items-center justify-between">
+            {
+              isLoading ? 
+              <p className='text-white text-xl'>Loading...</p>
+              : (
+                <>
             <button
               onClick={() => handleSubmit}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               type="submit"
-            >
+              >
               Sign up
             </button>
             <Link href="/" passHref>
@@ -95,6 +102,9 @@ const Signup: React.FC = () => {
                 Back to Home
               </button>
             </Link>
+              </>
+              )
+            }
           </div>
         </form>
       </div>
@@ -102,6 +112,8 @@ const Signup: React.FC = () => {
   );
 
   async function onClickRegister() {
+
+    setIsLoading(true);
 
     const responseGetUser = await refetch();
 

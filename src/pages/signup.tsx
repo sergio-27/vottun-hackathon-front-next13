@@ -97,7 +97,7 @@ const Signup: React.FC = () => {
             </button>
             <Link href="/" passHref>
               <button className="px-4 py-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-600 focus:outline-none focus:shadow-outline">
-                Back to Home
+              Back
               </button>
             </Link>
               </>

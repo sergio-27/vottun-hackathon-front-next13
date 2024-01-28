@@ -9,7 +9,7 @@ const communities = () => {
         <div className="container mx-auto p-4 z-50">
           <div className="flex justify-center">
 
-            <h1 className="text-4xl font-extrabold text-gray-200  sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl mt-32">COMMUNITIES</h1>
+            <h1 className="text-4xl font-extrabold text-gray-200  sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl mt-32 mb-4">COMMUNITIES</h1>
           </div>
           <Link href="/solutions">
             <CommunityCard

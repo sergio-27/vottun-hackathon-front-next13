@@ -21,15 +21,15 @@ const solutions = () => {
                  
                 />
                 <SolutionCard
-                  title="Votaciones"
+                  title="Voting"
                  
                 />
                 <SolutionCard
-                  title="Propuestas"
+                  title="Proposals"
                  
                 />
                 <SolutionCard
-                  title="Pagos compartidos"
+                  title="Shared payments"
                 />
               </div>
               <Link href="/communities" passHref>

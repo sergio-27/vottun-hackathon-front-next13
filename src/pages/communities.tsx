@@ -35,6 +35,14 @@ const communities = () => {
               description="Llega el Valencia Digital Summit (VDS2023) un evento que busca fortalecer la relación entre startups..."
             />
           </Link>
+          <Link href="/createCommunity">
+
+            <CommunityCard
+              image="/add-button.png"
+              title="Create community"
+              description="Create and organize a new community"
+            />
+          </Link>
         </div>
       </div>
     </Layout>

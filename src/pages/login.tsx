@@ -12,10 +12,10 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-800">
+    <div className="flex h-screen items-center justify-center bg-slate-950">
       <div className="w-full max-w-md">
         <h1 className="mb-8 text-center text-3xl text-white">
-          Inicio de Sesión
+          Login
         </h1>
         <form
           onSubmit={handleSubmit}
@@ -57,12 +57,12 @@ const Login: React.FC = () => {
                 className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
                 type="submit"
               >
-                Iniciar Sesión
+                Login
               </button>
             </Link>
             <Link href="/" passHref>
               <button className="focus:shadow-outline rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600 focus:outline-none">
-                Volver al Home
+                Back to Home
               </button>
             </Link>
           </div>

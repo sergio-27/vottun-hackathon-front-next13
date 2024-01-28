@@ -1,5 +1,6 @@
 import CommunityCard from "@/components/CommunityCard";
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout";
+
 import { api } from "@/utils/api";
 import Link from "next/link";
 
@@ -28,7 +29,6 @@ const communities = () => {
       ))}
   
           <Link href="/createCommunity">
-
             <CommunityCard
               image="/add-button.png"
               title="Create community"

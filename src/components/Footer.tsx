@@ -9,11 +9,11 @@ const Footer = () => {
             </a>
           </div>
           <div className="flex flex-wrap items-center">
-            <a href="https://twitter.com" className="mr-4 hover:text-gray-400">
-              Twitter
+            <a href="https://twitter.com" className="mr-8 hover:text-gray-400">
+              X
             </a>
-            <a href="https://facebook.com" className="mr-4 hover:text-gray-400">
-              Facebook
+            <a href="https://telegram.org" className="mr-8 hover:text-gray-400">
+              Telegram
             </a>
             <a href="https://instagram.com" className="hover:text-gray-400">
               Instagram
@@ -22,8 +22,7 @@ const Footer = () => {
         </div>
         <div className="mt-6 text-center">
           <p>
-            &copy; {new Date().getFullYear()} Disruptive Management. Todos los
-            derechos reservados.
+            &copy; {new Date().getFullYear()} Disruptive Management. All rights reserved.
           </p>
         </div>
       </div>

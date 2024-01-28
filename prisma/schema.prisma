@@ -32,6 +32,7 @@ model User {
 model Community {
     id                         Int      @id @default(autoincrement())
     ownerId                    Int
+    communityName              String
     contractAddress            String
     hasProposal                Boolean
     hasSharedPayment           Boolean

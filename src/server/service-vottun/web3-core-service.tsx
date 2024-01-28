@@ -1,3 +1,4 @@
+import { DeploySmartContractConvert, DeploySmartContractModel } from "../models/deploy-smart-contract-model";
 import { AllowanceConvert, GetAllowanceModel } from "../models/get-allowance-model";
 import { Convert, TransferERC20Model } from "../models/transfer-erc20-model";
 import { requestToVottunApi } from "./clientVottun";
@@ -28,5 +29,14 @@ export async function getAvailableNetworks() {
         body: null
     });
     console.log(response);
+    return response;
+}
+
+export async function deploySmartContract(reqBody: DeploySmartContractModel) {
+    const response = await requestToVottunApi({
+        method: "POST",
+        endpoint: "/core/v1/evm/contract/deploy", 
+        body: DeploySmartContractConvert.deploySmartContractModelToJson(reqBody)
+    });
     return response;
 }

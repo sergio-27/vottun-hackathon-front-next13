@@ -1,3 +1,4 @@
+import { api } from "@/utils/api";
 import React, { useState, ChangeEvent } from "react";
 
 interface CheckboxState {
@@ -15,6 +16,17 @@ const createCommunity: React.FC = () => {
     commonPayments: false,
     customDesign: false,
   });
+  const {data, refetch} = api.community.deploySmartContract.useQuery({
+        ownerId: 1,
+        communityName: communityName,
+        hasProposal: true,
+        hasSharedPayment: true,
+        hasChat: true,
+        adminAddress: "0x8d081aB34302C1406eD86e49a0beD17802223039", //address deivid
+  }, {enabled: false});
+
+  const {mutate: createdCommunityLocal} = api.community.createCommunity.useMutation({});
+
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCheckboxState({
@@ -36,7 +48,25 @@ const createCommunity: React.FC = () => {
     }
   };
 
-  const createCommunityHandler = () => {
+  const createCommunityHandler = async () => {
+    const response = await refetch();
+    console.log("createCommunityHandler", response.data);
+
+
+    createdCommunityLocal({
+      ownerId: 1,
+      communityName: communityName,
+      communityDescription: communityDescription,
+      communityImageUrl: communityImageUrl,
+      contractAddress: "0x000",
+      hasProposal: true,
+      hasSharedPayment: true,
+      hasChat: true,
+      adminAddress: "0x8d081aB34302C1406eD86e49a0beD17802223039",
+    });
+
+    
+
     console.log({
       checkboxState,
       communityName,

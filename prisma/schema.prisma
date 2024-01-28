@@ -33,7 +33,10 @@ model Community {
     id                         Int      @id @default(autoincrement())
     ownerId                    Int
     communityName              String
+    communityDescription       String
+    communityImageUrl          String
     contractAddress            String
+    adminAddress               String
     hasProposal                Boolean
     hasSharedPayment           Boolean
     hasChat                    Boolean

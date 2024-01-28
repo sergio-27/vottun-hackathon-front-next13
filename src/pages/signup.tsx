@@ -118,7 +118,7 @@ const Signup: React.FC = () => {
     if (data != null || data != undefined) {
       setError('Error ya existe');
     } else {
-      createdUser({
+      const response = createdUser({
         username: username,
         email: email
       });

@@ -1,8 +1,10 @@
+import Layout from "@/components/Layout";
 import Link from "next/link";
 import React from "react";
 
 const contact = () => {
   return (
+    <Layout>
     <div className="flex items-center justify-center min-h-screen bg-gray-800 text-white">
       <div className="p-8 bg-gray-700 rounded-lg shadow-md w-1/2">
         <h1 className="text-4xl mb-6 text-center font-bold">Contacto</h1>
@@ -15,7 +17,7 @@ const contact = () => {
               type="text"
               id="name"
               className="w-full px-4 py-2 mt-2 text-black rounded-md focus:outline-none focus:ring focus:ring-opacity-50"
-            />
+              />
           </div>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium">
@@ -25,7 +27,7 @@ const contact = () => {
               type="email"
               id="email"
               className="w-full px-4 py-2 mt-2 text-black rounded-md focus:outline-none focus:ring focus:ring-opacity-50"
-            />
+              />
           </div>
           <div className="mb-4">
             <label htmlFor="message" className="block text-sm font-medium">
@@ -34,12 +36,12 @@ const contact = () => {
             <textarea
               id="message"
               className="w-full h-32 px-4 py-2 mt-2 text-black rounded-md focus:outline-none focus:ring focus:ring-opacity-50"
-            ></textarea>
+              ></textarea>
           </div>
           <button
             type="submit"
             className="w-full px-4 py-2 mt-4 text-sm font-medium text-black bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none focus:ring focus:ring-opacity-50"
-          >
+            >
             Enviar Mensaje
           </button>
           <Link href="/" passHref>
@@ -50,6 +52,7 @@ const contact = () => {
         </form>
       </div>
     </div>
+              </Layout>
   );
 };
 

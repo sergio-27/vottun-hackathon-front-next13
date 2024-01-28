@@ -27,6 +27,17 @@ const solutions = () => {
             </div>
             <form className="mt-2 ">
               <div className=" flex items-center justify-between">
+                <button
+                  type="submit"
+                  className="mr-2 flex items-center justify-center rounded-full bg-blue-500 p-2 text-white"
+                >
+                  <Image
+                    src="/add-button.png"
+                    alt=" Send"
+                    width={30}
+                    height={30}
+                  />
+                </button>
                 <input
                   type="text"
                   value="Write here"

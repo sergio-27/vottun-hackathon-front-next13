@@ -91,14 +91,6 @@ const createCommunity: React.FC = () => {
           className="mb-4 w-full rounded-md border-2 p-4 text-black"
           rows={3}
         />
-        <input
-          type="text"
-          name="communityImageUrl"
-          value={communityImageUrl}
-          onChange={handleInputChange}
-          placeholder="Community Image URL"
-          className="mb-4 w-full  rounded-md border-2 p-4 text-black"
-        />
         <h2 className="my-5 text-3xl font-extrabold text-gray-200 sm:text-4xl md:text-5xl">
           Which solutions do you want to use?
         </h2>

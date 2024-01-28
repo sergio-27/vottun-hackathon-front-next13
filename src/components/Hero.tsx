@@ -11,7 +11,7 @@ const Hero = () => {
                 alt="Hero"
                 layout="fill"
                 objectFit="contain"
-                className="opacity-60 shadow-lg rounded-lg -m-5 filter"
+                className="opacity-60 shadow-lg rounded-lg -m-5"
             />
 
             <div className="z-10 flex flex-col items-center p-4 text-center">

@@ -1,9 +1,7 @@
-import { GetNewHashConvert } from '@/server/models/get-new-hash-response-model';
 import { api } from '@/utils/api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { boolean } from 'zod';
 
 const Signup: React.FC = () => {
   const [username, setUsername] = useState('');

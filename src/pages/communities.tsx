@@ -13,26 +13,26 @@ const communities = () => {
           </div>
           <Link href="/solutions">
             <CommunityCard
-              image="/img-community-1.jpg"
-              title="Españita"
-              description="Bienvenido a Españita, donde los chistes fluyen como el vino y las siestas son ley. Un lugar mágico donde las paellas te envían memes y Don Quijote es influencer."
+              image="/theworldeconomicforum.png"
+              title="The World Economic Forum"
+              description="The World Economic Forum shapes global agendas by engaging leaders from various sectors to improve the world."
             />
           </Link>
           <Link href="/solutions">
 
             <CommunityCard
-              image="/img-community-2.png"
-              title="Emiratos Barcelona"
-              description="Barcelona, el rincón donde las palmeras bailan flamenco y la Sagrada Familia es una lámpara mágica. Aquí, los camellos navegan por la Rambla y cada meme es un viaje en alfombra voladora."
+              image="/building.jpg"
+              title="Residential community"
+              description="Our community thrives through shared experiences."
             />
           </Link>
 
           <Link href="/solutions">
 
             <CommunityCard
-              image="/imagen-fea.png"
-              title="Valencia Digital Summit"
-              description="Llega el Valencia Digital Summit (VDS2023) un evento que busca fortalecer la relación entre startups..."
+              image="/hackatonimage.png"
+              title="Hackathon"
+              description="Hackathon is a community of developers, designers, and entrepreneurs who come together to solve problems using technology."
             />
           </Link>
           <Link href="/createCommunity">

@@ -1,6 +1,8 @@
 import { api } from "@/utils/api";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState, ChangeEvent } from "react";
+
 
 interface CheckboxState {
   proposals: boolean;
@@ -9,6 +11,7 @@ interface CheckboxState {
 }
 
 const createCommunity: React.FC = () => {
+  const router = useRouter();
   const [communityName, setCommunityName] = useState<string>("");
   const [communityDescription, setCommunityDescription] = useState<string>("");
   const [communityImageUrl, setCommunityImageUrl] = useState<string>("");
@@ -62,6 +65,8 @@ const createCommunity: React.FC = () => {
       hasChat: checkboxState.chat,
       adminAddress: "0xB669c0D9eFAe5A923a7d863Eb0A623D35280d7F4",
     });
+
+    router.back();
   };
 
   return (
@@ -147,7 +152,4 @@ const createCommunity: React.FC = () => {
 };
 
 export default createCommunity;
-function useAuth(): { user: any; login: any; logout: any; } {
-  throw new Error("Function not implemented.");
-}
 

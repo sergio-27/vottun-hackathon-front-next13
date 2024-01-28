@@ -1,9 +1,8 @@
 import Hero from "@/components/Hero";
-import Communities from "@/components/Communities";
+import Navbar from "@/components/Navbar";
 import Layout from "@/components/layout";
 import { type NextPage } from "next";
 import Head from "next/head";
-
 
 const Home: NextPage = () => {
   return (
@@ -14,10 +13,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/disrup3.png" />
       </Head>
 
-      <Layout>
+        <Navbar />
         <Hero />
-        <Communities />
-      </Layout>
     </>
   );
 };

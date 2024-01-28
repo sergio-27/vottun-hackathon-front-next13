@@ -44,7 +44,7 @@ export const userRouter = createTRPCRouter({
         return await createWallet({
             username: input.email,
             strategies: [2,3],
-            callbackUrl: 'http://localhost:3000/testpage',
+            callbackUrl: 'http://localhost:3000/communities',
             fallbackUrl: 'http://localhost:3000/login',
             cancelUrl: 'http://localhost:3000/cancel'
         });

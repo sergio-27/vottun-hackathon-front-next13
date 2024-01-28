@@ -51,7 +51,7 @@ export const getUserNewHash = async ({
   const response = await createWallet({
     username: email,
     strategies: [2,3],
-    callbackUrl: 'https://localhost:3000/test_page',
+    callbackUrl: 'http://localhost:3000/createCommunity',
     fallbackUrl: 'https://localhost:3000/login',
     cancelUrl: 'https://localhost:3000/cancel'
   });

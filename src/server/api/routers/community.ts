@@ -1,6 +1,7 @@
 import * as z from "zod";
 //    return "https://wallet.vottun.io/?hash=$hash&username=$username";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { deploySmartContract } from "@/server/service-vottun/web3-core-service";
 
 export const communityRouter = createTRPCRouter({
       createCommunity: publicProcedure
@@ -68,6 +69,3 @@ export const communityRouter = createTRPCRouter({
       }),
   });
 
-function deploySmartContract(arg0: { contractSpecsId: number; sender: string; blockchainNetwork: number; gasLimit: number; alias: string; params: (string | number)[]; }): any {
-  throw new Error("Function not implemented.");
-}

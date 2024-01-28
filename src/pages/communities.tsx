@@ -16,7 +16,7 @@ const communities = () => {
 
             <h1 className="text-4xl font-extrabold text-gray-200  sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl mt-32 mb-4">COMMUNITIES</h1>
           </div>
-          {userCommunities?.map((item, index) => (
+          {userCommunities?.map((item:any, index:any) => (
             <Link href="/solutions">
             <CommunityCard
               image="https://imgs.search.brave.com/9cfyFwRcgmDX_c8G-9yCdsiUcsG_Vep9wwuDzHtl0s0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4z/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvYnVzaW5lc3Mt/bWFuYWdlbWVudC02/LzM0MS9BY2NvdW50/X2FjY291bnRzX2Fj/cXVpcmVyX2FmZmls/aWF0ZV9hZ3JlZW1l/bnRfYWxsaWVuY2Vf/YXVkaWVuY2VfYXZh/dGFyX2J1c2luZXNz/X2J1c2luZXNzbWFu/X2NsaWVudHMtMTI4/LnBuZw"

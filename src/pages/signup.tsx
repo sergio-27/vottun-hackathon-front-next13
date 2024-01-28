@@ -18,14 +18,14 @@ const Signup: React.FC = () => {
   const {data: createWalletResponse, refetch: createWalletRefetch} = api.user.getUserNewHash.useQuery({email: email}, {enabled: false});
 
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Las contraseñas no coinciden.');
       return;
     }
     // Aquí enviarías los datos a tu servidor o API
-    console.log({ username, email, password });
+    await onClickRegister();
   };
   
   return (
@@ -84,7 +84,7 @@ const Signup: React.FC = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
-              onClick={() => onClickRegister()}
+              onClick={() => handleSubmit}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               type="submit"
             >
@@ -106,8 +106,7 @@ const Signup: React.FC = () => {
     const responseGetUser = await refetch();
 
     if (data != null || data != undefined) {
-      console.log("refetch", data!.email);
-      
+      setError('Error ya existe');
     } else {
       const response = createdUser({
         username: username,
@@ -120,7 +119,7 @@ const Signup: React.FC = () => {
         const response = await createWalletRefetch();
         router.push("https://wallet.vottun.io/?hash=" + response.data.hash + "&username=" + email);
       } else {
-        console.log("error creating user");
+        setError('Error creando usuario');
       }
     }
         

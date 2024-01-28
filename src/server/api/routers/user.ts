@@ -1,9 +1,10 @@
 import * as z from "zod";
 //    return "https://wallet.vottun.io/?hash=$hash&username=$username";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { getUser } from "@/server/web-hooks/user-web-hooks";
+
 import { Prisma } from "@prisma/client";
 import { createWallet } from "@/server/service-vottun/wallet-service";
+import { getUser } from "@/server/web-hooks/user-web-hooks";
 
 export const userRouter = createTRPCRouter({
       createUser: publicProcedure

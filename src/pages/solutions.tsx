@@ -1,22 +1,22 @@
 import React from "react";
-import SolutionCard from "@/components/SolutionCard"; // Asegúrate de que la ruta de importación sea correcta
-import Layout from "@/components/layout";
+import SolutionCard from "@/components/SolutionCard"; 
+import Layout from "@/components/Layout";
 
-const Solutions = () => {
+const solutions = () => {
   return (
     <Layout>
-      <section className="min-h-screen bg-black p-4">
+      <section className="min-h-screen bg-slate-950 p-4">
         <section className="mt-20 flex justify-center">
-          <h1 className="text-4xl font-extrabold text-[#5985a8]  sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl">
+          <h1 className="text-4xl font-extrabold text-gray-200  sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl">
             SOLUTIONS
           </h1>
         </section>
         <section>
           <div className="">
-            <div className="container mx-auto">
+            <div className="container mx-auto mt-16">
               <div className="mt-10">
                 <SolutionCard
-                  backgroundImage="solution-2.png"
+                  backgroundImage="solution-4.png"
                   title="Chat"
                  
                 />
@@ -26,13 +26,13 @@ const Solutions = () => {
                  
                 />
                 <SolutionCard
-                  backgroundImage="solution-6.png"
+                  backgroundImage="solution-4.png"
                   title="Propuestas"
                  
                 />
                 <SolutionCard
-                  backgroundImage="solution-7.png"
-                  title="Pagos para putas"
+                  backgroundImage="solution-4.png"
+                  title="Pagos compartidos"
                 
                 />
               </div>
@@ -44,4 +44,4 @@ const Solutions = () => {
   );
 };
 
-export default Solutions;
+export default solutions;

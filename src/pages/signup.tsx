@@ -77,11 +77,11 @@ const Signup: React.FC = () => {
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Registrarse
+              Sign up
             </button>
             <Link href="/" passHref>
               <button className="px-4 py-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-600 focus:outline-none focus:shadow-outline">
-                Volver al Home
+                Back to Home
               </button>
             </Link>
           </div>

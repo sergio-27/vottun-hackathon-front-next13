@@ -1,8 +1,9 @@
 import * as z from "zod";
 //    return "https://wallet.vottun.io/?hash=$hash&username=$username";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { createUser, getUser } from "@/server/web-hooks/user-web-hooks";
+import { getUser } from "@/server/web-hooks/user-web-hooks";
 import { Prisma } from "@prisma/client";
+import { createWallet } from "@/server/service-vottun/wallet-service";
 
 export const userRouter = createTRPCRouter({
       createUser: publicProcedure
@@ -11,18 +12,20 @@ export const userRouter = createTRPCRouter({
         email: z.string()
     }))
       .mutation(async ({ ctx, input }) => {
-
-        const createUserCall = await createUser({
-            prisma: ctx.db,
-            email: input.email,
-            userName: input.username
-        });
-        console.log("createUserCall", createUserCall);
-        /*if (!createUserCall) {
+        const createdUser = await ctx.db.user.create({
+            data: {
+              username: input.username,
+              email: input.email,
+              dni: "",
+              walletAddress: ""
+            },
+          });
+        console.log("createUserCall", createdUser);
+        if (!createdUser) {
             throw new Error("Error creating user");
-        }*/
+        }
         
-        return createUserCall;
+        return createdUser;
       }),
       getUser: publicProcedure
       .input(z.object({ email: z.string() }))
@@ -30,6 +33,19 @@ export const userRouter = createTRPCRouter({
         return getUser({
             prisma: ctx.db,
             email: input.email
+        });
+      }),
+      getUserNewHash: publicProcedure
+      .input(z.object({ email: z.string() }))
+      .query(async ({ ctx, input }) => {
+
+
+        return await createWallet({
+            username: input.email,
+            strategies: [2,3],
+            callbackUrl: 'http://localhost:3000/testpage',
+            fallbackUrl: 'http://localhost:3000/login',
+            cancelUrl: 'http://localhost:3000/cancel'
         });
       }),
   });

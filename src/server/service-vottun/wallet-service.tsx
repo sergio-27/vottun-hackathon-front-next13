@@ -1,4 +1,5 @@
 import { Convert, CreateWalletModel } from "../models/create-wallet-model";
+import { GetNewHashConvert } from "../models/get-new-hash-response-model";
 import { SendTxRequestConvert, SendTxRequestModel } from "../models/send-tx-request-model";
 import { requestToVottunApi } from "./clientVottun";
 
@@ -6,9 +7,10 @@ import { requestToVottunApi } from "./clientVottun";
 export async function createWallet(reqBody: CreateWalletModel) {
     const response = await requestToVottunApi({
         method: "POST",
-        endpoint: "/cwll/v1//hash/new", 
+        endpoint: "/cwll/v1/hash/new", 
         body: Convert.createWalletModelToJson(reqBody)
     });
+    console.log("response", response);
     return response;
 }
 

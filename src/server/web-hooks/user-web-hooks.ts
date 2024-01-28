@@ -1,4 +1,6 @@
 import type { PrismaClient } from "@prisma/client";
+import { createWallet } from "../service-vottun/wallet-service";
+import { GetNewHashConvert } from "../models/get-new-hash-response-model";
 
 ///// ENDPOINT CREATE USER /////
 export const createUser = async ({
@@ -10,15 +12,7 @@ export const createUser = async ({
   userName: string;
   email: string;
 }) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      username: userName,
-    },
-  });
-
-  if (user) return {error: 1};
-
-  const createdUser = await prisma.user.create({
+  /*const createdUser = await prisma.user.create({
     data: {
       username: userName,
       email: email,
@@ -26,8 +20,10 @@ export const createUser = async ({
       walletAddress: ""
     },
   });
-
-  return createdUser;
+  if (!createdUser) {
+    return undefined;
+  }*/
+  return undefined;
 };
 
 ///// ENDPOINT CREATE USER /////
@@ -45,6 +41,22 @@ export const getUser = async ({
   });
 
   return user;
+};
+
+export const getUserNewHash = async ({
+  email,
+}: {
+  email: string;
+}) => {
+  const response = await createWallet({
+    username: email,
+    strategies: [2,3],
+    callbackUrl: 'https://localhost:3000/test_page',
+    fallbackUrl: 'https://localhost:3000/login',
+    cancelUrl: 'https://localhost:3000/cancel'
+  });
+
+  return GetNewHashConvert.toGetNewHashResponseModel(response);
 };
 ///// ENDPOINT UPDATE USER /////
 /*export const updateUser = async ({

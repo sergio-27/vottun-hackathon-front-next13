@@ -1,7 +1,5 @@
-import { getAvailableNetworks } from '@/server/service-vottun/web3-core-service';
+import { GetNewHashConvert } from '@/server/models/get-new-hash-response-model';
 import { api } from '@/utils/api';
-import { url } from 'inspector';
-import { redirect } from 'next/dist/server/api-utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -14,8 +12,11 @@ const Signup: React.FC = () => {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  const {mutate: createUser} = api.user.createUser.useMutation({});
- 
+  const {mutate: createdUser} = api.user.createUser.useMutation({});
+  const {data, refetch} = api.user.getUser.useQuery({email: email}, {enabled: false});
+  const {data: userResponse, refetch: userRefetch} = api.user.getUser.useQuery({email: email}, {enabled: false});
+  const {data: createWalletResponse, refetch: createWalletRefetch} = api.user.getUserNewHash.useQuery({email: email}, {enabled: false});
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -102,17 +103,28 @@ const Signup: React.FC = () => {
 
   async function onClickRegister() {
 
-    const response = createUser({
-      username: username,
-      email: email
-    });
+    const responseGetUser = await refetch();
 
-    const userExists = api.user.getUser.useQuery({email: email});
+    if (data != null || data != undefined) {
+      console.log("refetch", data!.email);
+      
+    } else {
+      const response = createdUser({
+        username: username,
+        email: email
+      });
 
-    console.log("holaaaa", response);
-    console.log("userExists", userExists);
-  
-    //router.push('https://www.google.com');
+      const responseGetUser2 = await userRefetch();
+      if (!userResponse) {
+        console.log("responseGetUser2", responseGetUser2.data);
+        const response = await createWalletRefetch();
+        router.push("https://wallet.vottun.io/?hash=" + response.data.hash + "&username=" + email);
+      } else {
+        console.log("error creating user");
+      }
+    }
+        
+    //
   }
 };
 

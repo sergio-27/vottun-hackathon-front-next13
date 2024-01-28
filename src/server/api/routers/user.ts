@@ -46,7 +46,7 @@ export const userRouter = createTRPCRouter({
             strategies: [2,3],
             callbackUrl: 'http://localhost:3000/communities',
             fallbackUrl: 'http://localhost:3000/login',
-            cancelUrl: 'http://localhost:3000/cancel'
+            cancelUrl: 'http://localhost:3000/login'
         });
       }),
   });

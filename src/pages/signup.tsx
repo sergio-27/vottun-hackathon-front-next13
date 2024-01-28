@@ -16,6 +16,7 @@ const Signup: React.FC = () => {
   const {data, refetch} = api.user.getUser.useQuery({email: email}, {enabled: false});
   const {data: userResponse, refetch: userRefetch} = api.user.getUser.useQuery({email: email}, {enabled: false});
   const {data: createWalletResponse, refetch: createWalletRefetch} = api.user.getUserNewHash.useQuery({email: email}, {enabled: false});
+  
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

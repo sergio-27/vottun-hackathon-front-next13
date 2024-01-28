@@ -19,9 +19,17 @@ const solutions = () => {
                 <Link href="/chat">
                   <SolutionCard title="Chat" />
                 </Link>
-                <SolutionCard title="Votaciones" />
-                <SolutionCard title="Propuestas" />
-                <SolutionCard title="Pagos compartidos" />
+                <SolutionCard
+                  title="Voting"
+                 
+                />
+                <SolutionCard
+                  title="Proposals"
+                 
+                />
+                <SolutionCard
+                  title="Shared payments"
+                />
               </div>
               <Link href="/communities" passHref>
                 <button className="focus:shadow-outline -my-2 mx-10 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600 focus:outline-none">

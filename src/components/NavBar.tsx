@@ -14,7 +14,7 @@ const Navbar = () => {
         </Link>
         <div className="flex items-center">
           {/* Actualiza tu URL de contacto aquí */}
-          <Link href="">
+          <Link href="/contact">
             <div className="rounded-lg px-4 py-2 text-white hover:text-gray-300 cursor-pointer">
               Contact
             </div>

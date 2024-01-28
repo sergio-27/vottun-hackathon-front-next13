@@ -1,6 +1,7 @@
 import * as z from "zod";
 //    return "https://wallet.vottun.io/?hash=$hash&username=$username";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { deploySmartContract } from "@/server/service-vottun/web3-core-service";
 
 export const communityRouter = createTRPCRouter({
       createCommunity: publicProcedure
@@ -36,9 +37,17 @@ export const communityRouter = createTRPCRouter({
         
         return createCommunity;
       }),
+      getUserCommunities: publicProcedure
+      .input(z.object({ email: z.string() }))
+      .query(async ({ ctx, input }) => {
+        return await ctx.db.community.findMany({
+          where: {
+            ownerId: 1
+          }
+        });
+      }),
       deploySmartContract: publicProcedure
       .input(z.object({ 
-        ownerId: z.number(),
         communityName: z.string(),
         hasProposal: z.boolean(),
         hasSharedPayment: z.boolean(),
@@ -47,6 +56,8 @@ export const communityRouter = createTRPCRouter({
       }))
       .query(async ({ ctx, input }) => {
         console.log("hola", input.adminAddress);
+
+
         return await deploySmartContract({
             contractSpecsId: 12084,
             sender: "0x84fa37c1b4d9dbc87707e47440eae5285edd8e58",
@@ -68,6 +79,3 @@ export const communityRouter = createTRPCRouter({
       }),
   });
 
-function deploySmartContract(arg0: { contractSpecsId: number; sender: string; blockchainNetwork: number; gasLimit: number; alias: string; params: (string | number)[]; }): any {
-  throw new Error("Function not implemented.");
-}

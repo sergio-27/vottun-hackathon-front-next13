@@ -1,21 +1,34 @@
+import { api } from "@/utils/api";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState, ChangeEvent } from "react";
+
 
 interface CheckboxState {
   proposals: boolean;
   commonPayments: boolean;
-  customDesign: boolean;
+  chat: boolean;
 }
 
 const createCommunity: React.FC = () => {
+  const router = useRouter();
   const [communityName, setCommunityName] = useState<string>("");
   const [communityDescription, setCommunityDescription] = useState<string>("");
   const [communityImageUrl, setCommunityImageUrl] = useState<string>("");
   const [checkboxState, setCheckboxState] = useState<CheckboxState>({
     proposals: false,
     commonPayments: false,
-    customDesign: false,
+    chat: false,
   });
+  const {data: deploSmartContractData, refetch} = api.community.deploySmartContract.useQuery({
+    adminAddress: "0xB669c0D9eFAe5A923a7d863Eb0A623D35280d7F4",
+    communityName: communityName,
+    hasChat: checkboxState.chat,
+    hasProposal: checkboxState.proposals,
+    hasSharedPayment: checkboxState.proposals
+  }, {enabled: false});
+
+  const {mutate: createdCommunityLocal} = api.community.createCommunity.useMutation();
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCheckboxState({
@@ -37,13 +50,23 @@ const createCommunity: React.FC = () => {
     }
   };
 
-  const createCommunityHandler = () => {
-    console.log({
-      checkboxState,
-      communityName,
-      communityDescription,
-      communityImageUrl,
+  const createCommunityHandler = async () => {
+    const response = await refetch();
+    console.log("createCommunityHandler", response.data);
+
+    createdCommunityLocal({
+      ownerId: 1,
+      communityName: communityName,
+      communityDescription: communityDescription,
+      communityImageUrl: communityImageUrl,
+      contractAddress: response.data.contractAddress,
+      hasProposal: checkboxState.proposals,
+      hasSharedPayment: checkboxState.commonPayments,
+      hasChat: checkboxState.chat,
+      adminAddress: "0xB669c0D9eFAe5A923a7d863Eb0A623D35280d7F4",
     });
+
+    router.back();
   };
 
   return (
@@ -104,7 +127,7 @@ const createCommunity: React.FC = () => {
             <input
               type="checkbox"
               name="customDesign"
-              checked={checkboxState.customDesign}
+              checked={checkboxState.chat}
               onChange={handleCheckboxChange}
               className="mr-2"
             />
@@ -129,3 +152,4 @@ const createCommunity: React.FC = () => {
 };
 
 export default createCommunity;
+

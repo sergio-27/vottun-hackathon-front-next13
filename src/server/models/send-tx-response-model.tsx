@@ -14,7 +14,7 @@ export interface SendTxResponseModel {
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
-export class Convert {
+export class SendTxResponseConvert {
     public static toSendTxResponseModel(json: string): SendTxResponseModel {
         return cast(JSON.parse(json), r("SendTxResponseModel"));
     }
